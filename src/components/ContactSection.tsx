@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useState } from "react";
@@ -10,23 +11,32 @@ import { useToast } from "@/hooks/use-toast";
 export const ContactSection = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
+    areaOfStudy: "",
+    university: "",
     email: "",
     phone: "",
-    message: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message Sent!",
+      title: "Request Sent!",
       description: "We'll get back to you within 24 hours.",
     });
-    setFormData({ name: "", email: "", phone: "", message: "" });
+    setFormData({
+      firstName: "",
+      lastName: "",
+      areaOfStudy: "",
+      university: "",
+      email: "",
+      phone: "",
+    });
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-background to-muted/20">
+    <section id="contact" className="py-24 bg-gradient-to-b from-muted/20 to-background">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,10 +46,10 @@ export const ContactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Get Your Free Consultation
+            Request A Free Consultation
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Ready to get started? Fill out the form below and we'll be in touch within 24 hours
+            Fill in your details below and take the first step towards an exceptional thesis!
           </p>
         </motion.div>
 
@@ -55,57 +65,76 @@ export const ContactSection = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Full Name *
-                    </label>
+                    <Label htmlFor="firstName">First Name *</Label>
                     <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      id="firstName"
+                      placeholder="First Name"
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      className="mt-2 bg-background border-border"
                       required
-                      className="bg-background border-border"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email Address *
-                    </label>
+                    <Label htmlFor="lastName">Last Name *</Label>
                     <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      id="lastName"
+                      placeholder="Last Name"
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      className="mt-2 bg-background border-border"
                       required
-                      className="bg-background border-border"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Phone Number
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="bg-background border-border"
+                  <Label htmlFor="areaOfStudy">Area of Study *</Label>
+                  <Textarea
+                    id="areaOfStudy"
+                    placeholder="e.g., Economics, Psychology, Business Administration"
+                    value={formData.areaOfStudy}
+                    onChange={(e) => setFormData({ ...formData, areaOfStudy: e.target.value })}
+                    className="mt-2 bg-background border-border min-h-[80px] resize-none"
+                    required
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Tell us about your thesis *
-                  </label>
+                  <Label htmlFor="university">University *</Label>
                   <Textarea
-                    id="message"
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    id="university"
+                    placeholder="e.g., University of Amsterdam, Erasmus University"
+                    value={formData.university}
+                    onChange={(e) => setFormData({ ...formData, university: e.target.value })}
+                    className="mt-2 bg-background border-border min-h-[80px] resize-none"
                     required
-                    rows={6}
-                    className="bg-background border-border resize-none"
-                    placeholder="Briefly describe your thesis topic and what kind of help you need..."
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="email">Email *</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="your.email@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="mt-2 bg-background border-border"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="phone">Phone *</Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="+31 6 1234 5678"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="mt-2 bg-background border-border"
+                    required
                   />
                 </div>
 
@@ -114,7 +143,7 @@ export const ContactSection = () => {
                   size="lg"
                   className="w-full bg-gradient-primary hover:opacity-90 text-primary-foreground shadow-medium"
                 >
-                  Request Free Consultation
+                  SUBMIT
                 </Button>
               </form>
             </Card>
