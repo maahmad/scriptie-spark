@@ -1,61 +1,46 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { MessageCircle, CheckCircle2, Clock } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
-const testimonials = [
+// Placeholder images - replace these with your actual WhatsApp screenshot paths
+const whatsappScreenshots = [
   {
     id: 1,
-    name: "Sarah M.",
-    program: "MSc Psychology",
-    size: "large",
-    highlight: "Got unstuck in methodology",
-    quote: "I was completely stuck on my research design. After one call, everything clicked. Finished my thesis 2 months ahead of schedule.",
-    result: "Graduated 2 months early"
+    // Add your screenshot path here, e.g.: import screenshot1 from "@/assets/whatsapp-1.jpg"
+    // Then use: image: screenshot1
+    image: "https://placehold.co/400x800/dcf8c6/000000?text=WhatsApp+Screenshot+1",
+    alt: "Student testimonial - Passed thesis defense",
+    size: "large" // takes 2 columns and 2 rows
   },
   {
     id: 2,
-    name: "Michael K.",
-    program: "MA Business",
-    size: "small",
-    highlight: "Passed defense first try",
-    quote: "Committee loved my methodology section. Your guidance made all the difference.",
-    result: "8.5 grade"
+    image: "https://placehold.co/400x600/dcf8c6/000000?text=WhatsApp+Screenshot+2",
+    alt: "Student testimonial - Got unstuck",
+    size: "medium" // takes 1 column and 2 rows
   },
   {
     id: 3,
-    name: "Emma L.",
-    program: "BSc Data Science",
-    size: "medium",
-    highlight: "From panic to plan in 24h",
-    quote: "2 weeks left, 3 chapters unwritten. You created a realistic timeline that actually worked. Graduated on time.",
-    result: "Finished on time"
+    image: "https://placehold.co/400x500/dcf8c6/000000?text=WhatsApp+Screenshot+3",
+    alt: "Student testimonial - Finished on time",
+    size: "small" // takes 1 column and 1 row
   },
   {
     id: 4,
-    name: "David R.",
-    program: "PhD Sociology",
-    size: "small",
-    highlight: "Structure clarity",
-    quote: "Your literature review feedback clarified everything. Much more confident now.",
-    result: "On track"
+    image: "https://placehold.co/400x500/dcf8c6/000000?text=WhatsApp+Screenshot+4",
+    alt: "Student testimonial - Great results",
+    size: "small"
   },
   {
     id: 5,
-    name: "Lisa T.",
-    program: "MSc Economics",
-    size: "large",
-    highlight: "8.5 final grade",
-    quote: "Couldn't have done it without your support. The statistical analysis guidance was exactly what I needed to push my grade up.",
-    result: "8.5 grade"
+    image: "https://placehold.co/400x800/dcf8c6/000000?text=WhatsApp+Screenshot+5",
+    alt: "Student testimonial - Analysis help",
+    size: "large"
   },
   {
     id: 6,
-    name: "James P.",
-    program: "MA Education",
-    size: "medium",
-    highlight: "SPSS made simple",
-    quote: "I was drowning in SPSS output. You explained it in a way that finally made sense. Saved me weeks of confusion.",
-    result: "Completed analysis"
+    image: "https://placehold.co/400x600/dcf8c6/000000?text=WhatsApp+Screenshot+6",
+    alt: "Student testimonial - Methodology clarity",
+    size: "medium"
   }
 ];
 
@@ -74,83 +59,68 @@ export const TestimonialsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary mb-4">
+            <MessageSquare className="w-5 h-5" />
+            <span className="font-semibold">Real Conversations</span>
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Real Students, Real Results
+            Students Who Made It
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            See how we helped students like you graduate on time
+            Real WhatsApp conversations with students we've helped graduate on time
           </p>
         </motion.div>
 
-        {/* Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-7xl mx-auto mb-12">
-          {testimonials.map((testimonial, index) => (
+        {/* WhatsApp Screenshots Gallery - Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto mb-12">
+          {whatsappScreenshots.map((screenshot, index) => (
             <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              key={screenshot.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`
-                ${testimonial.size === "large" ? "lg:col-span-2 lg:row-span-2" : ""}
-                ${testimonial.size === "medium" ? "lg:col-span-2" : ""}
-                ${testimonial.size === "small" ? "lg:col-span-1" : ""}
+                relative group overflow-hidden rounded-2xl
+                ${screenshot.size === "large" ? "lg:col-span-2 lg:row-span-2" : ""}
+                ${screenshot.size === "medium" ? "lg:row-span-2" : ""}
+                ${screenshot.size === "small" ? "lg:col-span-1" : ""}
               `}
             >
-              <Card className={`
-                h-full p-6 hover:shadow-strong transition-all duration-300 hover:-translate-y-1 
-                bg-gradient-to-br from-card to-card/80 backdrop-blur border-2 hover:border-primary/50
-                ${testimonial.size === "large" ? "p-8" : ""}
-              `}>
-                {/* WhatsApp-style indicator */}
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                    <MessageCircle className="w-4 h-4 text-primary" />
+              <div className="relative h-full min-h-[300px] overflow-hidden rounded-2xl border-2 border-border/50 hover:border-primary/50 transition-all duration-300 shadow-lg hover:shadow-strong">
+                <img
+                  src={screenshot.image}
+                  alt={screenshot.alt}
+                  className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                />
+                {/* Overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                  <div className="text-sm text-foreground/90">
+                    <MessageSquare className="w-5 h-5 text-primary mb-2" />
+                    <p className="font-medium">{screenshot.alt}</p>
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-foreground">{testimonial.name}</div>
-                    <div className="text-xs text-muted-foreground">{testimonial.program}</div>
-                  </div>
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 </div>
-
-                {/* Highlight badge */}
-                <div className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                  <CheckCircle2 className="w-3 h-3" />
-                  {testimonial.highlight}
-                </div>
-
-                {/* Quote */}
-                <blockquote className={`
-                  text-foreground leading-relaxed mb-4
-                  ${testimonial.size === "large" ? "text-lg" : "text-sm"}
-                `}>
-                  "{testimonial.quote}"
-                </blockquote>
-
-                {/* Result badge */}
-                <div className="flex items-center gap-2 text-sm">
-                  <Clock className="w-4 h-4 text-accent" />
-                  <span className="font-semibold text-accent">{testimonial.result}</span>
-                </div>
-
-                {/* Chat bubble decoration for large cards */}
-                {testimonial.size === "large" && (
-                  <div className="mt-6 p-4 bg-[#dcf8c6] dark:bg-primary/10 rounded-lg rounded-br-none shadow-sm">
-                    <p className="text-sm text-foreground italic">
-                      "This is exactly what I needed. Thank you!"
-                    </p>
-                    <span className="text-xs text-muted-foreground mt-1 block text-right">
-                      WhatsApp conversation
-                    </span>
-                  </div>
-                )}
-              </Card>
+              </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Instructions for adding your own screenshots */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12 p-6 bg-muted/30 rounded-lg max-w-3xl mx-auto"
+        >
+          <p className="text-sm text-muted-foreground">
+            <span className="font-semibold text-foreground">To add your WhatsApp screenshots:</span><br />
+            1. Save your screenshots to <code className="px-2 py-1 bg-background rounded">src/assets/</code><br />
+            2. Import them at the top of this file<br />
+            3. Replace the placeholder image URLs with your imported images
+          </p>
+        </motion.div>
 
         {/* Stats bar */}
         <motion.div
