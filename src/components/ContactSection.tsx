@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -26,7 +26,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-background to-muted/20">
+    <section id="contact" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -36,10 +36,10 @@ export const ContactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
-            Ready to Start?
+            Start Today - Free Consultation
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Schedule a free call. We'll discuss your thesis and see if we're a good fit.
+            Fill in your details and we'll schedule a free consultation within 24 hours. No obligations, just tailored advice.
           </p>
         </motion.div>
 
@@ -60,6 +60,7 @@ export const ContactSection = () => {
                     </label>
                     <Input
                       id="name"
+                      placeholder="Full Name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       required
@@ -73,6 +74,7 @@ export const ContactSection = () => {
                     <Input
                       id="email"
                       type="email"
+                      placeholder="your.email@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       required
@@ -88,6 +90,7 @@ export const ContactSection = () => {
                   <Input
                     id="phone"
                     type="tel"
+                    placeholder="+31 6 1234 5678"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="bg-background border-border"
@@ -125,7 +128,7 @@ export const ContactSection = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-4"
           >
             <Card className="p-6 bg-card border-border shadow-subtle">
               <div className="flex items-start gap-4">
@@ -145,7 +148,7 @@ export const ContactSection = () => {
                   <Phone className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground mb-1">Call Us</h3>
+                  <h3 className="font-semibold text-foreground mb-1">WhatsApp Us</h3>
                   <p className="text-sm text-muted-foreground">+31 6 1234 5678</p>
                 </div>
               </div>
@@ -153,8 +156,8 @@ export const ContactSection = () => {
 
             <Card className="p-6 bg-card border-border shadow-subtle">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-secondary" />
+                <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center flex-shrink-0">
+                  <MapPin className="w-6 h-6 text-foreground" />
                 </div>
                 <div>
                   <h3 className="font-semibold text-foreground mb-1">Location</h3>

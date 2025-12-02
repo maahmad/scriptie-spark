@@ -1,8 +1,9 @@
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
 import { FeaturesSection } from "@/components/FeaturesSection";
-import { ServicesSection } from "@/components/ServicesSection";
 import { AboutSection } from "@/components/AboutSection";
+import { ServicesSection } from "@/components/ServicesSection";
+import { CTASection } from "@/components/CTASection";
 import { ContactSection } from "@/components/ContactSection";
 import { Footer } from "@/components/Footer";
 import { useEffect } from "react";
@@ -16,6 +17,8 @@ const Index = () => {
       setTimeout(() => {
         const element = document.getElementById(location.state.scrollTo);
         element?.scrollIntoView({ behavior: "smooth" });
+        // Clear the state after scrolling
+        window.history.replaceState({}, document.title);
       }, 100);
     }
   }, [location]);
@@ -26,8 +29,9 @@ const Index = () => {
       <main>
         <HeroSection />
         <FeaturesSection />
-        <ServicesSection />
         <AboutSection />
+        <ServicesSection />
+        <CTASection />
         <ContactSection />
       </main>
       <Footer />
