@@ -24,6 +24,7 @@ export const Navigation = () => {
     { label: "Thesis Tutoring", action: () => navigate("/thesis-tutoring") },
     { label: "Data Analysis", action: () => navigate("/data-analysis") },
     { label: "About", action: () => navigate("/about") },
+    { label: "Blog", action: () => navigate("/blog") },
     { label: "Contact", action: () => navigate("/contact") },
   ];
 
