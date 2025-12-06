@@ -1,113 +1,109 @@
 import { motion } from "framer-motion";
 
 export const AboutSection = () => {
-  return (
-    <section id="about" className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Editorial Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mb-16"
-        >
-          <span className="text-primary font-medium tracking-widest uppercase text-sm mb-4 block">
-            About ScriptieTutor
-          </span>
-          <h2 className="text-5xl lg:text-7xl font-bold text-foreground leading-[1.1] mb-6">
-            Graduate on Time.
-            <br />
-            <span className="text-muted-foreground">Finally.</span>
-          </h2>
-        </motion.div>
+  const stats = [
+    { value: "200+", label: "Students Helped" },
+    { value: "95%", label: "Graduate On Time" },
+    { value: "5+", label: "Years Experience" },
+  ];
 
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Column - Main Text */}
+  return (
+    <section id="about" className="bg-background">
+      {/* Stats Banner */}
+      <div className="bg-primary">
+        <div className="container mx-auto px-4 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-7 space-y-8"
+            transition={{ duration: 0.5 }}
+            className="grid grid-cols-3 py-12 lg:py-16"
           >
-            <p className="text-xl lg:text-2xl text-foreground leading-relaxed font-medium">
-              Been putting off your thesis for months? You're not alone. Most of my 
-              students are working professionals who delayed their thesis because of 
-              jobs, internships, or life getting in the way.
-            </p>
-            
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Now the deadline is real—and the pressure is on. That's exactly why I 
-              offer a hassle-free service: hand me your thesis, and I'll guide you 
-              to graduation. Students from <span className="text-foreground font-medium">UvA, VU Amsterdam, Erasmus, 
-              Tilburg, and Radboud</span> have all finished with my help—even after 
-              months of delay.
-            </p>
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="text-center border-r border-primary-foreground/20 last:border-r-0"
+              >
+                <div className="text-4xl lg:text-6xl font-bold text-primary-foreground mb-2">
+                  {stat.value}
+                </div>
+                <div className="text-sm lg:text-base text-primary-foreground/80 uppercase tracking-wider">
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
 
-            <div className="pt-4">
-              <p className="text-lg text-muted-foreground leading-relaxed border-l-2 border-primary pl-6">
-                No complicated processes. No endless back-and-forth. Just give me 
-                your project, follow my guidance, and get it done.
-              </p>
-            </div>
+      {/* Content Section */}
+      <div className="container mx-auto px-4 lg:px-8 py-20 lg:py-28">
+        <div className="max-w-4xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-4">
+              Graduate on Time with ScriptieTutor
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Stop procrastinating. Start today.
+            </p>
           </motion.div>
 
-          {/* Right Column - Stats */}
+          {/* Content Grid */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="lg:col-span-5 flex flex-col justify-center"
+            className="grid md:grid-cols-2 gap-8 lg:gap-12"
           >
-            <div className="space-y-10">
-              {/* Stat 1 */}
-              <div className="border-b border-border pb-8">
-                <div className="text-6xl lg:text-7xl font-bold text-primary mb-2">
-                  200+
-                </div>
-                <div className="text-lg text-muted-foreground uppercase tracking-wide">
-                  Students Helped
-                </div>
-              </div>
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                <span className="font-semibold text-foreground">Been putting off your thesis for months?</span> You're not alone. 
+                Most of my students are working professionals who delayed their thesis because of jobs, internships, 
+                or life getting in the way.
+              </p>
+              <p className="text-lg text-foreground font-medium leading-relaxed">
+                Now the deadline is real—and the pressure is on.
+              </p>
+            </div>
 
-              {/* Stat 2 */}
-              <div className="border-b border-border pb-8">
-                <div className="text-6xl lg:text-7xl font-bold text-foreground mb-2">
-                  95%
-                </div>
-                <div className="text-lg text-muted-foreground uppercase tracking-wide">
-                  Graduate On Time
-                </div>
-              </div>
-
-              {/* Stat 3 */}
-              <div>
-                <div className="text-6xl lg:text-7xl font-bold text-muted-foreground mb-2">
-                  5+
-                </div>
-                <div className="text-lg text-muted-foreground uppercase tracking-wide">
-                  Years of Experience
-                </div>
-              </div>
+            <div className="space-y-6">
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                That's exactly why I offer a hassle-free service: hand me your thesis, and I'll guide you 
+                to graduation. Students from <span className="font-medium text-foreground">UvA, VU Amsterdam, Erasmus, Tilburg, and Radboud</span> have all 
+                finished with my help—even after months of delay.
+              </p>
+              <p className="text-lg text-muted-foreground leading-relaxed">
+                No complicated processes. No endless back-and-forth. Just give me your project, follow my guidance, 
+                and get it done.
+              </p>
             </div>
           </motion.div>
-        </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 pt-12 border-t border-border"
-        >
-          <p className="text-xl text-foreground font-medium">
-            Book a free call and let's get you graduated—finally.
-          </p>
-        </motion.div>
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="text-center mt-12 pt-8 border-t border-border"
+          >
+            <p className="text-xl font-semibold text-foreground">
+              Book a free call and let's get you graduated—finally.
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
